@@ -1,4 +1,4 @@
-$EliteBattleTargetFramerate = 60
+$EliteBattleTargetFramerate = 40
 #===============================================================================
 #  Main Utility Module for Elite Battle: DX
 #-------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ module EliteBattle
   @messageDarkColor = Color.white
   @messageDarkShadow = Color.new(32, 32, 32)
   # additional config vars
-  $EliteBattleTargetFramerate = 60 if $EliteBattleTargetFramerate <= 0
+  $EliteBattleTargetFramerate = 40 if $EliteBattleTargetFramerate <= 0
   @setBoss = false
   @logger = ErrorLogger.new("errorlogEBDX.txt")
   # cache move animations at game load

@@ -288,15 +288,15 @@ class BattleSceneRoom
     end
     # adjusts for wind affected elements
     if @strongwind
-      @wind -= @toggle*2
+      @wind -= @toggle*0.75
       @toggle *= -1 if @wind < 65 || (@wind >= 70 && @toggle < 0)
     else
-      @wWait += 1
-      if @wWait > Graphics.frame_rate*5
+      @wWait += 0.125
+      if @wWait > Graphics.frame_rate*5/2
         mod = @toggle*(2 + (@wind >= 88 && @wind <= 92 ? 2 : 0))
-        @wind -= mod
+        @wind -= mod/8
         @toggle *= -1 if @wind <= 80 || @wind >= 100
-        @wWait = 0 if @wWait > Graphics.frame_rate*5 + 33
+        @wWait = 0 if @wWait > (Graphics.frame_rate*5 + 33)/2
       end
     end
     # additional metrics

@@ -115,10 +115,10 @@ class DynamicPokemonSprite
     # loads shadow particles for battler animation
     for i in 0...16
       @fp[i] = Sprite.new(@viewport)
-      @fp[i].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/ebShadow")
-      @fp[i].ox = @fp[i].bitmap.width/4
+      @fp[i].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/ebShadowParticle")
+      @fp[i].ox = @fp[i].bitmap.width/8
       @fp[i].oy = @fp[i].bitmap.height/2
-      @fp[i].src_rect.set(0,0,@fp[i].bitmap.width/2,@fp[i].bitmap.height)
+      @fp[i].src_rect.set(0,0,@fp[i].bitmap.width/4,@fp[i].bitmap.height)
       @fp[i].opacity = 0
     end
     # loads aura charge particles
@@ -589,7 +589,7 @@ class DynamicPokemonSprite
     return if !@loaded
     return if self.disposed? || @bitmap.disposed?
     # animates shadow particles
-    for i in 0...16
+    for i in 0...5
       next if i > @frame2*self.delta/4
       @fp[i].visible = @showshadow
       @fp[i].visible = false if @hidden
@@ -599,17 +599,17 @@ class DynamicPokemonSprite
         @fp[i].toggle = 2
         z = [0.5,0.6,0.7,0.8,0.9,1.0][rand(6)]
         @fp[i].param = z
-        @fp[i].x = self.x - self.bitmap.width*self.zoom_x/2 + rand(self.bitmap.width)*self.zoom_x
-        @fp[i].y = self.y - 64*self.zoom_y + rand(64)*self.zoom_y
+        @fp[i].x = self.x - self.bitmap.width*self.zoom_x/3 + rand(self.bitmap.width)*self.zoom_x/1.5
+        @fp[i].y = self.y - 256*self.zoom_y/5 + rand(64)*self.zoom_y
         @fp[i].z = (rand(2)==0) ? self.z - 1 : self.z + 1
         @fp[i].speed = (rand(2)==0) ? +1 : -1
-        @fp[i].src_rect.x = rand(2)*@fp[i].bitmap.width/2
+        @fp[i].src_rect.x = rand(4)*@fp[i].bitmap.width/2
       end
-      @fp[i].zoom_x = @fp[i].param*self.zoom_x
-      @fp[i].zoom_y = @fp[i].param*self.zoom_y
-      @fp[i].param -= 0.01/self.delta
+      @fp[i].zoom_x = @fp[i].param*self.zoom_x*2.5
+      @fp[i].zoom_y = @fp[i].param*self.zoom_y*2.5
+      @fp[i].param -= 0.04/self.delta
       @fp[i].y -= 1
-      @fp[i].opacity += 8*@fp[i].toggle/self.delta
+      @fp[i].opacity += 15*@fp[i].toggle/self.delta
       @fp[i].toggle = -1 if @fp[i].opacity >= 255
     end
     @frame2 += 1 if @frame2 < 128

@@ -84,7 +84,7 @@ module EliteBattle
   USE_DELTA_TIME_HOTFIX = true
 
   #Target framerate to check the current Graphics.frame_rate. Duration for pbWait is calculated by frames / current fps and the multiplier by current fps / target rate. 60/60 = 1 so mult doesn't apply.
-  DEFAULT_FRAMERATE = 30
+  DEFAULT_FRAMERATE = 40
 
   # Apply extra offsets based to pbShowOpponent and pbHideOpponent (still in test).
   USE_TRAINER_OUT_OF_PLACE_HOTFIX = true
@@ -93,7 +93,7 @@ module EliteBattle
   TRY_TO_ALWAYS_INITIALIZE = true
 
   # As EBDX uses custom intros, setting this to false will use default Essentials intros
-  USE_EBDX_BATTLE_INTROS = true
+  USE_EBDX_BATTLE_INTROS = false
 end
 #-------------------------------------------------------------------------------
 # Adds additional "camera" vectors for when the camera is idling
